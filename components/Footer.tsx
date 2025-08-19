@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, Heart, Linkedin, Mail, MapPin, Network, Phone, Twitter } from "lucide-react";
+import { Github, Heart, Linkedin, Mail, MapPin, MessageCircle, Network, Phone } from "lucide-react";
 
 export function Footer() {
   return (
@@ -22,7 +22,7 @@ export function Footer() {
                 </div>
               </div>
               <div>
-                <h3 className="text-xl text-white">CommunityHub</h3>
+                <h3 className="text-xl text-white">Innoverse.You</h3>
                 <p className="text-xs text-slate-400">Connect. Learn. Grow.</p>
               </div>
             </div>
@@ -31,13 +31,15 @@ export function Footer() {
             </p>
             <div className="flex space-x-4">
               {[
-                { icon: Twitter, href: "#" },
-                { icon: Linkedin, href: "#" },
+                { icon: Linkedin, href: "https://www.linkedin.com/company/innoverse-you/", target: "_blank" },
+                { icon: MessageCircle, href: "https://chat.whatsapp.com/DE0qy17AB6t1Qdalf1D2iL", target: "_blank" },
                 { icon: Github, href: "#" }
               ].map((social, index) => (
                 <motion.a
                   key={index}
                   href={social.href}
+                  target={social.target}
+                  rel={social.target === "_blank" ? "noopener noreferrer" : undefined}
                   className="text-slate-400 hover:text-white transition-colors"
                   whileHover={{ scale: 1.2, y: -2 }}
                   transition={{ type: "spring", stiffness: 300 }}
@@ -100,7 +102,7 @@ export function Footer() {
                 whileHover={{ x: 5 }}
               >
                 <Mail className="h-4 w-4" />
-                <span>hello@communityhub.com</span>
+                <span>info.innoversyou@gmail.com</span>
               </motion.div>
               <motion.div 
                 className="flex items-center space-x-2 text-slate-400 hover:text-white transition-colors cursor-pointer"

@@ -15,14 +15,14 @@ const scrollToCommunity = () => {
 
 export function HeroSection() {
   return (
-    <section id="hero" className="relative overflow-hidden hero-gradient">
+    <section id="hero" className="relative overflow-hidden hero-gradient min-h-screen flex items-center">
       {/* Subtle background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-4 -right-4 w-72 h-72 bg-white/5 rounded-full blur-3xl"></div>
         <div className="absolute -bottom-4 -left-4 w-96 h-96 bg-white/3 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="relative container mx-auto px-4 py-32">
+      <div className="relative container mx-auto px-4 py-20">
         <div className="mx-auto max-w-4xl text-center">
           <motion.div 
             className="mb-8 inline-flex items-center rounded-full border border-white/20 bg-white/10 backdrop-blur-sm px-4 py-2"

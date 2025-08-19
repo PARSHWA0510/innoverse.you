@@ -43,7 +43,7 @@ export function CommunityOverview() {
             transition={{ duration: 0.7, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            Our Community Change this 
+            Together, We Create Impact 
           </motion.h2>
           <motion.p 
             className="text-lg text-muted-foreground"

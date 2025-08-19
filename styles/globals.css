@@ -130,7 +130,11 @@
 
   body {
     @apply bg-background text-foreground;
+    margin: 0;
+    padding: 0;
   }
+  
+
   
   /* Custom gradient backgrounds */
   .gradient-bg {
@@ -142,6 +146,9 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    line-height: 1.2;
+    padding: 0.1em 0;
+    display: inline-block;
   }
   
   .hero-gradient {
@@ -211,4 +218,6 @@
 html {
   font-size: var(--font-size);
   scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
 }
