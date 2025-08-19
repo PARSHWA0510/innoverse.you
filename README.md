@@ -1,4 +1,4 @@
-# Community Platform Landing Page
+# innoverse.you
 
 A modern, responsive landing page for a community platform built with React, TypeScript, Tailwind CSS, and Framer Motion.
 
