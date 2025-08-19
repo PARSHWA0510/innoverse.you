@@ -278,8 +278,11 @@ export function UserLevels() {
                   as we create the future of mentorship and professional growth.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <motion.button 
-                    className="group relative bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-500 text-white px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
+                  <motion.a
+                    href="https://chat.whatsapp.com/DE0qy17AB6t1Qdalf1D2iL"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-500 text-white px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden inline-block"
                     whileHover={{ scale: 1.02, y: -3 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -288,7 +291,7 @@ export function UserLevels() {
                       <span>Join Community</span>
                       <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
                     </div>
-                  </motion.button>
+                  </motion.a>
                   {/* <motion.button 
                     className="group relative bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white/20 hover:border-white/40 transition-all duration-300 overflow-hidden"
                     whileHover={{ scale: 1.02, y: -3 }}
