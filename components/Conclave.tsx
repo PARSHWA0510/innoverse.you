@@ -222,7 +222,7 @@ function EnhancedSessionCard({ session, isHour2 = false, index }: { session: any
 }
 
 export function Conclave() {
-  const [activeHour, setActiveHour] = useState(1);
+  const [,setActiveHour] = useState(1);
 
   return (
     <section id="conclave" className="py-24 bg-gradient-to-br from-accent/20 to-secondary/30">
