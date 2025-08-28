@@ -4,51 +4,57 @@ import {
   Briefcase,
   Building,
   ChevronRight,
-  Clock,
+  DollarSign,
   GraduationCap,
+  HelpCircle,
   MessageCircle,
   Rocket,
   TrendingUp,
   Users
 } from "lucide-react";
 import { useState } from "react";
-import { Badge } from "./ui/badge";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardContent } from "./ui/card";
 
 const roleInfo = {
-  "2nd Year Student": { 
-    icon: GraduationCap, 
-    color: "from-gray-400 to-gray-500", 
-    shortName: "2nd Year",
-    fullName: "2nd Year Student" 
-  },
-  "Final Year Student": { 
+  "Student": { 
     icon: GraduationCap, 
     color: "from-blue-500 to-cyan-500", 
-    shortName: "Final Year",
-    fullName: "Final Year Student" 
+    shortName: "Student",
+    fullName: "Student" 
   },
   "Early Professional": { 
     icon: Briefcase, 
     color: "from-emerald-500 to-teal-500", 
-    shortName: "Professional",
-    fullName: "Early Professional" 
+    shortName: "Early Professional (1-3 yrs)",
+    fullName: "Early Professional (1-3 yrs)" 
+  },
+  "Experienced Professional": { 
+    icon: Building, 
+    color: "from-orange-500 to-red-500", 
+    shortName: "Experienced Professional (7-9 yrs)",
+    fullName: "Experienced Professional (7-9 yrs)" 
+  },
+  "Startup Aspirant": { 
+    icon: Rocket, 
+    color: "from-orange-500 to-red-500", 
+    shortName: "Startup Aspirant",
+    fullName: "Startup Aspirant" 
   },
   "Startup Founder": { 
     icon: Rocket, 
     color: "from-violet-500 to-purple-500", 
-    shortName: "Founder",
+    shortName: "Startup Founder",
     fullName: "Startup Founder" 
   },
-  "Business Professional": { 
-    icon: Building, 
-    color: "from-orange-500 to-red-500", 
-    shortName: "Business Pro",
-    fullName: "Business Professional" 
-  },
-  "Investor": { 
+  "Industry Expert": { 
     icon: TrendingUp, 
     color: "from-rose-500 to-pink-500", 
+    shortName: "Industry Expert",
+    fullName: "Industry Expert" 
+  },
+  "Investor": { 
+    icon: DollarSign, 
+    color: "from-green-500 to-emerald-500", 
     shortName: "Investor",
     fullName: "Investor" 
   }
@@ -60,28 +66,34 @@ const conclaveData = {
     description: "Each member seeks mentorship from the next level",
     sessions: [
       { 
-        seeker: "Final Year Student", 
+        seeker: "Student", 
         provider: "Early Professional", 
         topic: "Career Transition & Job Search",
-        example: "How do I prepare for technical interviews? What salary should I negotiate?"
+        example: "How to prepare for tech interviews? What things should I look for in a company?"
       },
       { 
         seeker: "Early Professional", 
+        provider: "Experienced Professional", 
+        topic: "Career Growth & Skill Development",
+        example: "How do I build leadership skills while still being hands-on? What makes a great team lead vs. a great individual contributor?"
+      },
+      { 
+        seeker: "Startup Aspirant", 
         provider: "Startup Founder", 
-        topic: "Leadership & Entrepreneurship",
-        example: "Should I start my own company or gain more experience? How do I validate business ideas?"
+        topic: "Entrepreneurship & Innovation",
+        example: "How do I know if I'm ready to start my own company? What should I consider before taking the leap?"
       },
       { 
         seeker: "Startup Founder", 
-        provider: "Business Professional", 
+        provider: "Industry Expert", 
         topic: "Scaling & Market Expansion",
         example: "How do I scale my team from 5 to 50 people? What are the key metrics I should track?"
       },
       { 
-        seeker: "Business Professional", 
+        seeker: "Industry Expert", 
         provider: "Investor", 
         topic: "Investment & Wealth Strategy",
-        example: "How should I diversify my portfolio? What are good investment opportunities in this market?"
+        example: "How do I structure my pitch deck for investors? What key metrics and storytelling elements do investors look for?"
       }
     ]
   },
@@ -102,13 +114,19 @@ const conclaveData = {
         example: "What's it really like working in tech? Here are the soft skills that matter most..."
       },
       { 
-        provider: "Startup Founder", 
+        provider: "Experienced Professional", 
         seeker: "Early Professional", 
+        topic: "Career Advancement & Leadership",
+        example: "Here's how to build your personal brand and position yourself for promotions"
+      },
+      { 
+        provider: "Startup Founder", 
+        seeker: "Experienced Professional", 
         topic: "Innovation & Opportunities",
         example: "Here's how to spot market gaps and think like an entrepreneur in your current role"
       },
       { 
-        provider: "Business Professional", 
+        provider: "Industry Expert", 
         seeker: "Startup Founder", 
         topic: "Strategic Planning & Growth",
         example: "These are the frameworks I use for strategic decisions and team management"
@@ -138,11 +156,11 @@ function EnhancedSessionCard({ session, isHour2 = false, index }: { session: any
       <Card className="relative bg-gradient-to-br from-background to-accent/20 border border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-lg h-full">
         <CardContent className="p-5 h-full flex flex-col">
           {/* Session Number Badge */}
-          <div className="absolute top-3 right-3">
+          {/* <div className="absolute top-3 right-3">
             <Badge variant="secondary" className="text-xs px-2 py-1">
               Session {index + 1}
             </Badge>
-          </div>
+          </div> */}
 
           {/* Participants Section */}
           <div className="space-y-4 flex-grow">
@@ -216,21 +234,20 @@ export function Conclave() {
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
         >
-          <motion.div
-            className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full mb-6"
-          >
-            <MessageCircle className="h-8 w-8 text-white" />
-          </motion.div>
-          
-          <motion.h2 
-            className="mb-4 text-3xl sm:text-4xl lg:text-5xl gradient-text"
+          <motion.div 
+            className="flex items-center justify-center mb-8"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            The Conclave Experience
-          </motion.h2>
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full mr-4">
+              <MessageCircle className="h-8 w-8 text-white" />
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl gradient-text">
+              The Conclave Experience
+            </h2>
+          </motion.div>
           <motion.p 
             className="text-lg text-muted-foreground max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
@@ -238,7 +255,7 @@ export function Conclave() {
             transition={{ duration: 0.7, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            A 1-hour structured format where everyone experiences both learning and teaching through parallel 1:1 conversations.
+            A structured format where each member both gives and receives guidance through focused 1:1 conversations.
           </motion.p>
         </motion.div>
 
@@ -273,63 +290,37 @@ export function Conclave() {
           </Card>
         </motion.div>
 
-        {/* Hour Selector */}
-        <div className="flex justify-center mb-8">
-          <div className="flex space-x-4">
-            {[1, 2].map((hour) => (
-              <motion.button
-                key={hour}
-                onClick={() => setActiveHour(hour)}
-                className={`px-6 py-3 rounded-xl transition-all duration-300 ${
-                  activeHour === hour 
-                    ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg' 
-                    : 'bg-background border border-border hover:bg-accent'
-                }`}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <div className="flex items-center space-x-2">
-                  <Clock className="h-4 w-4" />
-                  <span>30 minutes</span>
-                </div>
-              </motion.button>
-            ))}
+                  {/* Hour Selector */}
+          <div className="flex justify-center mb-8">
+            <motion.button
+              onClick={() => setActiveHour(1)}
+              className="px-6 py-3 rounded-xl transition-all duration-300 bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <div className="flex items-center space-x-2">
+                <HelpCircle className="h-4 w-4" />
+                <span>Seeking & Giving Guidance</span>
+              </div>
+            </motion.button>
           </div>
-        </div>
 
         {/* Sessions Display */}
         <motion.div
-          key={activeHour}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="max-w-6xl mx-auto"
         >
           <Card className="bg-gradient-to-br from-background to-accent/30 border-0 shadow-2xl">
-            <CardHeader className="text-center pb-4">
-              <div className="flex items-center justify-center space-x-3 mb-3">
-                <Badge variant="outline" className="text-base px-4 py-2">
-                  30 minutes
-                </Badge>
-                <Badge variant="secondary" className="text-sm">
-                  4 Parallel Sessions
-                </Badge>
-              </div>
-              <CardTitle className="text-2xl mb-2">
-                {activeHour === 1 ? conclaveData.hour1.title : conclaveData.hour2.title}
-              </CardTitle>
-              <CardDescription className="text-base">
-                {activeHour === 1 ? conclaveData.hour1.description : conclaveData.hour2.description}
-              </CardDescription>
-            </CardHeader>
             
             <CardContent className="px-6 pb-6">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 auto-rows-fr">
-                {(activeHour === 1 ? conclaveData.hour1.sessions : conclaveData.hour2.sessions).map((session, index) => (
+                {conclaveData.hour1.sessions.map((session, index) => (
                   <EnhancedSessionCard 
                     key={index}
                     session={session} 
-                    isHour2={activeHour === 2} 
+                    isHour2={false} 
                     index={index}
                   />
                 ))}
